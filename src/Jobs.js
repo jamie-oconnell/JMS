@@ -2,36 +2,7 @@ import React, { Component } from "react";
 import { Table, Container } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
-const jobs = [
-  {
-    id: 1,
-    name: "Jamie O'Connell",
-    phone: "0478755349",
-    email: "jamielukeoconnell@gmail.com",
-    created: "14/05/2018"
-  },
-  {
-    id: 2,
-    name: "Jamie O'Connell",
-    phone: "0478755349",
-    email: "jamielukeoconnell@gmail.com",
-    created: "14/05/2018"
-  },
-  {
-    id: 3,
-    name: "Jamie O'Connell",
-    phone: "0478755349",
-    email: "jamielukeoconnell@gmail.com",
-    created: "14/05/2018"
-  },
-  {
-    id: 4,
-    name: "Jamie O'Connell",
-    phone: "0478755349",
-    email: "jamielukeoconnell@gmail.com",
-    created: "14/05/2018"
-  }
-];
+
 
 export default class Customers extends Component {
   render() {

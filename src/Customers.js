@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Table, Container } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { distanceInWordsToNow } from "date-fns";
-import customers from './customerDB.js'
+import {customers} from './DB.js'
 
 
 export default class Customers extends Component {

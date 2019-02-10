@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Header, Dropdown, List, Label } from "semantic-ui-react";
-import devices from "./devices";
+import { devices } from "./DB";
 
 export default class RepairCalculator extends Component {
   constructor(props) {

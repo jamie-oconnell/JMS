@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Card, Header, Container, Button } from "semantic-ui-react";
-import customers from "./customerDB";
+import {customers} from "./DB";
 import CustomerTabs from "./CustomerTabs";
 
 export default class Customer extends Component {
