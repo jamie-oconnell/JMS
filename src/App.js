@@ -6,6 +6,8 @@ import Dashboard from "./Dashboard";
 import Customers from "./Customers";
 import Customer from "./Customer";
 import Sidebar from "./Sidebar";
+import Jobs from "./Jobs";
+import Job from "./Job";
 
 class App extends Component {
   render() {
@@ -19,6 +21,8 @@ class App extends Component {
               <Route path="/" component={Dashboard} exact />
               <Route path="/customers" component={Customers} exact />
               <Route path="/customers/:customer" component={Customer} />
+              <Route path="/jobs" component={Jobs} exact />
+              <Route path="/jobs/:job" component={Job}  />
             </Switch>
           </div>
         </div>

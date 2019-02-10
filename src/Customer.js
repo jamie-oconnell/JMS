@@ -6,15 +6,9 @@ import CustomerTabs from "./CustomerTabs";
 export default class Customer extends Component {
   constructor(props) {
     super(props);
-    this.handleChange = this.handleChange.bind(this);
     this.state = {
       customer: null
     };
-  }
-
-  handleChange(e, { value }) {
-    console.log("test");
-    console.log(e, value);
   }
 
   componentDidMount() {
