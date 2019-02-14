@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { distanceInWordsToNow } from "date-fns";
 import {customers} from './DB.js'
 
+const headers = ['Name', 'Phone Number', 'Email', 'Created']
 
 export default class Customers extends Component {
   render() {
@@ -12,10 +13,9 @@ export default class Customers extends Component {
         <Table celled>
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell>Name</Table.HeaderCell>
-              <Table.HeaderCell>Phone Number</Table.HeaderCell>
-              <Table.HeaderCell>Email</Table.HeaderCell>
-              <Table.HeaderCell>Created</Table.HeaderCell>
+              {headers.map(header => {
+                return <Table.HeaderCell>{header}</Table.HeaderCell>
+              })}
             </Table.Row>
           </Table.Header>
           <Table.Body>

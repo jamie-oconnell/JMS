@@ -107,35 +107,35 @@ const devices = [
 
 const jobs = [
   {
-    id: "1",
+    id: 1,
     description: "",
     customer: "Carolyn Fuller",
     title: "Asus P100 tesitng",
     status: "Diagnosis",
     created: "2018-09-09 16:56:08",
-    customerId: "1",
+    customerId: 1,
     dueDate: "2019-09-09 16:56:08",
     lastUpdate: "2019-02-10 16:56:08"
   },
   {
-    id: "2",
+    id: 2,
     description: "",
     customer: "Carolyn Fuller",
     title: "Asus P100 tesitng",
     status: "Diagnosis",
     created: "2018-09-09 16:56:08",
-    customerId: "1",
+    customerId: 1,
     dueDate: "2019-09-09 16:56:08",
     lastUpdate: "2019-02-10 16:56:08"
   },
   {
-    id: "3",
+    id: 3,
     description: "",
     customer: "Carolyn Fuller",
     title: "Asus P100 tesitng",
     status: "Diagnosis",
     created: "2018-09-09 16:56:08",
-    customerId: "1",
+    customerId: 1,
     dueDate: "2019-09-09 16:56:08",
     lastUpdate: "2019-02-10 16:56:08"
   },

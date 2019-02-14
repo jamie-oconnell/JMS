@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Card, Header, Container, Button } from "semantic-ui-react";
-import {customers} from "./DB";
+import { customers } from "./DB";
 import CustomerTabs from "./CustomerTabs";
 
 export default class Customer extends Component {
@@ -12,8 +12,12 @@ export default class Customer extends Component {
   }
 
   componentDidMount() {
-    let customerId = Number(this.props.match.params.customer);
-    let customer = customers.find(customer => {
+    let customerId;
+    Number(this.props.match) ?
+      customerId = this.props.match.params.customer
+      :
+      customerId = this.props.id;
+    const customer = customers.find(customer => {
       return customer.id === customerId;
     });
     this.setState({ customer: customer });
@@ -23,21 +27,21 @@ export default class Customer extends Component {
     const { customer } = this.state;
     return (
       <Container>
-        <Card style={{ width: "100%" }}>
+        <Card className="fluid">
           <div className="customer-header">
             <div className="customer-details">
-              {customer ? (
+              {customer && (
                 <>
                   <Header as="h2">{customer.name}</Header>
                   <span onChange={this.handleChange}>{customer.phone}</span>
                   <span>{customer.email}</span>
                 </>
-              ) : (
-                ""
-              )}
+              )
+              }
             </div>
             <div className="customer-actions">
-              <Button primary>Primary</Button>
+              <Button primary>Edit</Button>
+              <Button primary>SMS</Button>
             </div>
           </div>
           <CustomerTabs />

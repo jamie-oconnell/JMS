@@ -24,21 +24,27 @@ const chartData = {
   labels: ["Booked In", "On Bench", "Waiting Parts", "Awaiting Pickup"]
 };
 
+const headers = ['Job #', 'Customer', 'Issue', 'Status', 'Due Date', 'Created', 'Last Update']
+
 export default class Customers extends Component {
   render() {
     return (
       <Container>
-        <Pie data={chartData} />
+        <div>
+        <Pie data={chartData}
+          width={100}
+          height={200}
+          options={{
+            maintainAspectRatio: false
+          }} />
+        </div>
+
         <Table celled>
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell>Job #</Table.HeaderCell>
-              <Table.HeaderCell>Customer</Table.HeaderCell>
-              <Table.HeaderCell>Issue</Table.HeaderCell>
-              <Table.HeaderCell>Status</Table.HeaderCell>
-              <Table.HeaderCell>Due Date</Table.HeaderCell>
-              <Table.HeaderCell>Created</Table.HeaderCell>
-              <Table.HeaderCell>Last Update</Table.HeaderCell>
+              {headers.map(header => {
+                return <Table.HeaderCell>{header}</Table.HeaderCell>
+              })}
             </Table.Row>
           </Table.Header>
           <Table.Body>
