@@ -5,12 +5,29 @@ export default class Pos extends Component {
   constructor(props) {
     super(props);
     this.updateSelected = this.updateSelected.bind(this);
-    this.updateValue = this.updateValue.bind(this);
+    this.updateQuantity = this.updateQuantity.bind(this);
+    this.updatePrice = this.updatePrice.bind(this);
     this.removeItem = this.removeItem.bind(this);
+    this.onBlur = this.onBlur.bind(this);
     this.state = {
       items: [
-        { product: "Iphone 6s LCD", price: 149, options: "White", quantity: 1 },
-        { product: "Iphone 6s Screen Protector", price: 24.99, quantity: 2 }
+        {
+          product: "Iphone 6s LCD",
+          priceDefault: 149,
+          price: 149,
+          options: "White",
+          quantity: 1,
+          discount: 0,
+          markup: 0
+        },
+        {
+          product: "Iphone 6s Screen Protector",
+          priceDefault: 24.99,
+          price: 24.99,
+          quantity: 2,
+          discount: 0,
+          markup: 0
+        }
       ],
       currentlyOpen: null
     };
@@ -32,7 +49,7 @@ export default class Pos extends Component {
     });
   }
 
-  updateValue(e, index) {
+  updateQuantity(e, index) {
     let newVal = Number(e.target.value);
     if (newVal === "") {
       newVal = 0;
@@ -41,7 +58,53 @@ export default class Pos extends Component {
     }
     this.setState(prevState => {
       const prevItems = prevState.items;
-      prevItems[index].quantity = newVal;
+      prevItems[index]["quantity"] = newVal;
+      return { items: prevItems };
+    });
+  }
+
+  updatePrice(e, index) {
+    let newVal = e.target.value;
+    this.setState(prevState => {
+      const prevItems = prevState.items;
+      prevItems[index]["price"] = newVal;
+      const priceDefault = prevItems[index]["priceDefault"];
+      if (newVal > priceDefault) {
+        prevItems[index]["markup"] = Number(
+          ((newVal - priceDefault) / priceDefault) * 100
+        ).toFixed(2);
+        prevItems[index]["discount"] = 0;
+      } else {
+        prevItems[index]["discount"] =
+          ((priceDefault - newVal) / priceDefault) * 100;
+        prevItems[index]["markup"] = 0;
+      }
+
+      return { items: prevItems };
+    });
+  }
+
+  updateDiscount(e, index) {
+    let newVal = e.target.value;
+    this.setState(prevState => {
+      const prevItems = prevState.items;
+      prevItems[index]["discount"] = newVal;
+      prevItems[index]["price"] =
+        prevItems[index]["priceDefault"] * (1 - newVal / 100);
+      return { items: prevItems };
+    });
+  }
+
+  onBlur(index) {
+    this.setState(prevState => {
+      const prevItems = prevState.items;
+      prevItems[index]["price"] = Number(prevItems[index]["price"]).toFixed(2);
+      prevItems[index]["discount"] = Number(
+        prevItems[index]["discount"]
+      ).toFixed(2);
+      prevItems[index]["quantity"] = Number(
+        prevItems[index]["quantity"]
+      ).toFixed(0);
       return { items: prevItems };
     });
   }
@@ -94,7 +157,8 @@ export default class Pos extends Component {
                         <List.Header>{item.product}</List.Header>
                         <List.Content>{item.options}</List.Content>
                       </div>
-                      <div className="pos-item-price">{`$${item.price * item.quantity}`}</div>
+                      <div className="pos-item-price">{`$${item.price *
+                        item.quantity}`}</div>
                       <Button
                         onClick={() => {
                           this.removeItem(index);
@@ -113,19 +177,46 @@ export default class Pos extends Component {
                         <div>
                           <label>Quantity</label>
                           <Input
+                            type="number"
+                            onBlur={() => {
+                              this.onBlur(index);
+                            }}
                             onChange={e => {
-                              this.updateValue(e, index);
+                              this.updateQuantity(e, index);
                             }}
                             value={item.quantity}
                           />
                         </div>
                         <div>
                           <label>Price</label>
-                          <Input value={item.price} />
+                          <Input
+                            type="number"
+                            onBlur={() => {
+                              this.onBlur(index);
+                            }}
+                            onChange={e => {
+                              this.updatePrice(e, index);
+                            }}
+                            value={item.price}
+                          />
                         </div>
                         <div>
-                          <label>Discount (%)</label>
-                          <Input />
+                          <label>
+                            {item.markup === 0 ? "Discount" : "Markup"} (%)
+                          </label>
+                          <Input
+                            type="number"
+                            onBlur={() => {
+                              this.onBlur(index);
+                            }}
+                            value={
+                              item.markup === 0 ? item.discount : item.markup
+                            }
+                            disabled={item.markup > 0}
+                            onChange={e => {
+                              this.updateDiscount(e, index);
+                            }}
+                          />
                         </div>
                       </div>
                       <div className="pos-actions-bottom">
