@@ -45,6 +45,7 @@ code {
 .main {
   margin-left: 55px;
   padding: 20px;
+  height: 100%;
 }
 
 .menu-link {
@@ -73,14 +74,137 @@ code {
 
 .ui.card {
   padding: 20px !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
 }
 
-.customer-header{
+.pos .ui.card {
+  width: auto !important;
+}
+
+.customer-header {
   display: flex;
 }
 
-.customer-details{
+.customer-details {
   display: flex;
   flex: 1;
   flex-direction: column;
+}
+
+.pos {
+  display: grid;
+  height: 100%;
+  grid-template-columns: 50% 50%;
+}
+
+.pos-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.pos-right, .pos-left {
+  padding: 0 1em;
+}
+
+.pos-products {
+  margin: 1em 0;
+  display: grid;
+  grid-template-columns: repeat( auto-fit, minmax(100px, 1fr) );
+  grid-gap: 1rem;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+  height: 600px;
+}
+
+.dashboard .dashboard-item {
+  padding: 1rem;
+  height: 100%;
+}
+
+.dashboard-item .ui.card {
+  height: 100%;
+}
+
+.pos-item {
+  display: flex;
+  position: relative;
+}
+
+.pos-item:before {
+  position: absolute;
+  content: "";
+  background-color: #41af4b;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  opacity: 0;
+  transition: opacity .2s ease 0s;
+}
+
+.pos-item-actions {
+  visibility: visible;
+  opacity: 1;
+  max-height: 300px;
+  transition: max-height 0.2s ease;
+}
+
+.pos-item.expanded:before {
+  opacity: 1;
+}
+
+.pos-item-quantity {
+  margin-right: 20px;
+}
+
+.pos-item-content {
+  display: flex;
+  padding: 0.7em 0 0.7em 0.7em;
+  align-items: center;
+}
+
+.pos-item-delete {
+  padding: 0 1em;
+  margin-left: 1em !important;
+}
+
+.pos-item-delete i {
+  margin: 0 !important;
+}
+
+.pos-item-actions {
+  padding: 0 16px;
+}
+
+.pos-item-actions label {
+  margin-bottom: 5px;
+}
+
+.pos-actions-top, .pos-actions-bottom {
+  margin-bottom: 0.5em;
+}
+
+.pos-actions-top {
+  display: grid;
+  grid-template-columns: repeat(3, 33.3%);
+}
+
+.pos-actions-top div {
+  padding: 0 0.25em;
+}
+
+.pos-actions-top div, .pos-actions-bottom div {
+  display: flex;
+  flex-direction: column;
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+  padding: 0 16px;
+  max-height: 0;
 }

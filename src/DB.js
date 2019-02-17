@@ -109,9 +109,10 @@ const jobs = [
   {
     id: 1,
     description: "",
-    customer: "Carolyn Fuller",
-    title: "Asus P100 tesitng",
-    status: "Diagnosis",
+    customer: "Jamie O'Connell",
+    issue: "Not charging",
+    device: "Pixel 3 XL",
+    status: "On Bench",
     created: "2018-09-09 16:56:08",
     customerId: 1,
     dueDate: "2019-09-09 16:56:08",
@@ -121,10 +122,11 @@ const jobs = [
     id: 2,
     description: "",
     customer: "Carolyn Fuller",
-    title: "Asus P100 tesitng",
-    status: "Diagnosis",
+    issue: "No power to device",
+    device: "Asus P100",
+    status: "Booked In",
     created: "2018-09-09 16:56:08",
-    customerId: 1,
+    customerId: 2,
     dueDate: "2019-09-09 16:56:08",
     lastUpdate: "2019-02-10 16:56:08"
   },
@@ -132,13 +134,25 @@ const jobs = [
     id: 3,
     description: "",
     customer: "Carolyn Fuller",
-    title: "Asus P100 tesitng",
-    status: "Diagnosis",
+    issue: "Screen replacement",
+    device: "Iphone 6s",
+    status: "Awaiting Parts",
     created: "2018-09-09 16:56:08",
     customerId: 1,
     dueDate: "2019-09-09 16:56:08",
     lastUpdate: "2019-02-10 16:56:08"
-  },
+  }
 ];
 
-export { devices, customers, jobs };
+const settings = {
+  repairStatusColours: {
+    "Booked In": "pink",
+    "On Bench": "orange",
+    "Awaiting Parts": "blue",
+    "Awaiting Device": "teal",
+    "To Be Ordered": "purple",
+    "Ready To Go": "red"
+  }
+};
+
+export { devices, customers, jobs, settings };

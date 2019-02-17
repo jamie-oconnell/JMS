@@ -16,7 +16,7 @@ class App extends Component {
         <div className="App">
           <Header />
           <Sidebar />
-          <div className="main">
+          <main className="main">
             <Switch>
               <Route path="/" component={Dashboard} exact />
               <Route path="/customers" component={Customers} exact />
@@ -24,7 +24,7 @@ class App extends Component {
               <Route path="/jobs" component={Jobs} exact />
               <Route path="/jobs/:job" component={Job}  />
             </Switch>
-          </div>
+          </main>
         </div>
       </BrowserRouter>
     );

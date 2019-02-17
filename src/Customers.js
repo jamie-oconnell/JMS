@@ -13,8 +13,8 @@ export default class Customers extends Component {
         <Table celled>
           <Table.Header>
             <Table.Row>
-              {headers.map(header => {
-                return <Table.HeaderCell>{header}</Table.HeaderCell>
+              {headers.map((header, index) => {
+                return <Table.HeaderCell key={index}>{header}</Table.HeaderCell>
               })}
             </Table.Row>
           </Table.Header>

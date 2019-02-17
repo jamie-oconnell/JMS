@@ -13,13 +13,14 @@ export default class Customer extends Component {
 
   componentDidMount() {
     let customerId;
-    Number(this.props.match) ?
-      customerId = this.props.match.params.customer
-      :
-      customerId = this.props.id;
+    this.props.match
+      ? customerId = Number(this.props.match.params.customer)
+      : customerId = this.props.id
+
     const customer = customers.find(customer => {
       return customer.id === customerId;
     });
+
     this.setState({ customer: customer });
   }
 
@@ -36,8 +37,7 @@ export default class Customer extends Component {
                   <span onChange={this.handleChange}>{customer.phone}</span>
                   <span>{customer.email}</span>
                 </>
-              )
-              }
+              )}
             </div>
             <div className="customer-actions">
               <Button primary>Edit</Button>
