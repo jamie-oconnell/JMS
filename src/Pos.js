@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Input, Card, List, Button, Icon } from "semantic-ui-react";
+import { quickProducts } from "./DB";
 
 export default class Pos extends Component {
   constructor(props) {
@@ -9,26 +10,9 @@ export default class Pos extends Component {
     this.updatePrice = this.updatePrice.bind(this);
     this.removeItem = this.removeItem.bind(this);
     this.onBlur = this.onBlur.bind(this);
+    this.addProduct = this.addProduct.bind(this);
     this.state = {
-      items: [
-        {
-          product: "Iphone 6s LCD",
-          priceDefault: 149,
-          price: 149,
-          options: "White",
-          quantity: 1,
-          discount: 0,
-          markup: 0
-        },
-        {
-          product: "Iphone 6s Screen Protector",
-          priceDefault: 24.99,
-          price: 24.99,
-          quantity: 2,
-          discount: 0,
-          markup: 0
-        }
-      ],
+      items: [],
       currentlyOpen: null
     };
   }
@@ -109,25 +93,55 @@ export default class Pos extends Component {
     });
   }
 
+  addProduct(product) {
+    console.log(product);
+    this.setState(prevState => {
+      const prevItems = prevState.items;
+      product = {
+        ...product,
+        priceDefault: product.price,
+        quantity: 1,
+        discount: 0,
+        markup: 0
+      };
+      prevItems.push(product);
+      return { items: prevItems };
+    });
+  }
+
+  saleTotal() {
+    const { items } = this.state;
+    if (items.length !== 0) {
+      return items
+        .map(item => {
+          return item.price;
+        })
+        .reduce((total, amount) => total + amount);
+    } else {
+      return 0;
+    }
+  }
+
   render() {
     return (
       <>
         <div className="pos">
           <div className="pos-left">
             <Input fluid icon="search" placeholder="Start typing to search.." />
-            <div className="pos-products">
-              <Card>Product</Card>
-              <Card>Product</Card>
-              <Card>Product</Card>
-              <Card>Product</Card>
-              <Card>Product</Card>
-              <Card>Product</Card>
-              <Card>Product</Card>
-              <Card>Product</Card>
-              <Card>Product</Card>
-              <Card>Product</Card>
-              <Card>Product</Card>
-              <Card>Product</Card>
+            <div className="pos-quick-products">
+              {quickProducts.map((product, index) => {
+                return (
+                  <Card
+                    key={index}
+                    onClick={() => {
+                      this.addProduct(product);
+                    }}
+                    className="pos-quick-product"
+                  >
+                    <span>{product.name}</span>
+                  </Card>
+                );
+              })}
             </div>
           </div>
           <div className="pos-right">
@@ -154,8 +168,8 @@ export default class Pos extends Component {
                     >
                       <div className="pos-item-quantity">{item.quantity}</div>
                       <div style={{ flex: "1" }}>
-                        <List.Header>{item.product}</List.Header>
-                        <List.Content>{item.options}</List.Content>
+                        <List.Header>{item.name}</List.Header>
+                        <List.Content>{item.variants}</List.Content>
                       </div>
                       <div className="pos-item-price">{`$${item.price *
                         item.quantity}`}</div>
@@ -230,7 +244,7 @@ export default class Pos extends Component {
                 );
               })}
             </List>
-            <Button color="green">Purchase</Button>
+            <Button disabled={!this.saleTotal()} color="green">Pay {`$${this.saleTotal()}`}</Button>
           </div>
         </div>
       </>

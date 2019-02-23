@@ -25,7 +25,7 @@ export default class Job extends Component {
       <Card className="fluid">
         {job && (
           <>
-            <Header as="h3">{job.title}</Header>
+            <Header as="h3">{job.issue}</Header>
             <span>{job.id}</span>   
             <Label>{job.status}</Label>
           <JobsTabs customerId={job.customerId} customerName={job.customer}/>

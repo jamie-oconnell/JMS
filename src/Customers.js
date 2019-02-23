@@ -25,7 +25,7 @@ export default class Customers extends Component {
                   <Table.Cell>
                     <Link to={`/customers/${customer.id}`}>
                       {customer.name}
-                    </Link>{" "}
+                    </Link>
                   </Table.Cell>
                   <Table.Cell>{customer.phone}</Table.Cell>
                   <Table.Cell>

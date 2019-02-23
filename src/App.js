@@ -8,6 +8,7 @@ import Customer from "./Customer";
 import Sidebar from "./Sidebar";
 import Jobs from "./Jobs";
 import Job from "./Job";
+import SingleCard from "./SingleCard";
 
 class App extends Component {
   render() {
@@ -20,9 +21,9 @@ class App extends Component {
             <Switch>
               <Route path="/" component={Dashboard} exact />
               <Route path="/customers" component={Customers} exact />
-              <Route path="/customers/:customer" component={Customer} />
+              <Route path="/customers/:customer" component={SingleCard} />
               <Route path="/jobs" component={Jobs} exact />
-              <Route path="/jobs/:job" component={Job}  />
+              <Route path="/jobs/:job" component={Job} />
             </Switch>
           </main>
         </div>

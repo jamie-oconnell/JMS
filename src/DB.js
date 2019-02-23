@@ -138,8 +138,8 @@ const jobs = [
     device: "Iphone 6s",
     status: "Awaiting Parts",
     created: "2018-09-09 16:56:08",
-    customerId: 1,
-    dueDate: "2019-09-09 16:56:08",
+    customerId: 2,
+    dueDate: "2019-09-10 16:56:08",
     lastUpdate: "2019-02-10 16:56:08"
   }
 ];
@@ -155,4 +155,60 @@ const settings = {
   }
 };
 
-export { devices, customers, jobs, settings };
+const quickProducts = [
+  {
+    productId: 1,
+    name: "Iphone 6s LCD",
+    price: 149,
+  },
+  {
+    productId: 2,
+    name: "Iphone 7 LCD",
+    price: 199,
+  },
+  {
+    productId: 3,
+    name: "Iphone 7 LCD",
+    price: 199,
+  },
+  {
+    productId: 4,
+    name: "Iphone 7 LCD",
+    price: 199,
+  },
+  {
+    productId: 5,
+    name: "Iphone 7 LCD",
+    price: 199,
+  },
+  {
+    productId: 6,
+    name: "Iphone 7 LCD",
+    price: 199,
+  },
+];
+
+const productRequests = [
+  {
+    name: "Lightning to HDMI",
+    quantity: 1
+  },
+  {
+    name: "USB Hubs",
+    quantity: 4
+  },
+  {
+    name: "Apple Headphone Adapters",
+    quantity: 6
+  },
+  {
+    name: "Samsung J series cases",
+    quantity: 4
+  },
+  {
+    name: "Lightning to HDMI",
+    quantity: 1
+  },
+]
+
+export { devices, customers, jobs, settings , quickProducts, productRequests};

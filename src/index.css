@@ -107,12 +107,13 @@ code {
   padding: 0 1em;
 }
 
-.pos-products {
+.pos-quick-products {
   margin: 1em 0;
   display: grid;
-  grid-template-columns: repeat( auto-fit, minmax(100px, 1fr) );
+  grid-template-columns: repeat( auto-fit, minmax(100px, 1fr));
   grid-gap: 1rem;
 }
+
 
 .dashboard {
   display: grid;
@@ -207,4 +208,8 @@ code {
   opacity: 0;
   padding: 0 16px;
   max-height: 0;
+}
+
+.customer-header{
+  margin-bottom: 10px;
 }
