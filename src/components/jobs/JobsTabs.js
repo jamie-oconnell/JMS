@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Tab } from "semantic-ui-react";
-import Customer from "./Customer";
+import { Tab, Form, TextArea } from "semantic-ui-react";
+import Customer from "../customers/Customer";
+import Notes from "./Notes";
 
 export default class JobsTabs extends Component {
   render() {
@@ -14,7 +15,17 @@ export default class JobsTabs extends Component {
           </Tab.Pane>
         )
       },
-      { menuItem: "Notes", render: () => <Tab.Pane>Tab 2 Content</Tab.Pane> },
+      {
+        menuItem: "Notes",
+        render: () => (
+          <Tab.Pane>
+            <Form>
+              <TextArea autoHeight placeholder="Try adding multiple lines" />
+            </Form>
+            <Notes />
+          </Tab.Pane>
+        )
+      },
       {
         menuItem: "Part Orders",
         render: () => <Tab.Pane>Tab 3 Content</Tab.Pane>

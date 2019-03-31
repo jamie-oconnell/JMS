@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Tab} from "semantic-ui-react";
-import { jobs } from "./DB";
-import JobsTable from "./JobsTable";
+import Axios from 'axios'
+import JobsTable from "../jobs/Jobs";
 
 export default class CustomerTabs extends Component {
   constructor(props) {
@@ -40,10 +40,10 @@ export default class CustomerTabs extends Component {
   }
 
   findJobs() {
-    this.setState({
-      jobs: jobs.filter(job => {
-        return job.customerId === this.props.customerId;
-      })
+    Axios.get("http://localhost:5000/api/jobs").then(res => {
+      this.setState({
+        jobs: res.data
+      });
     });
   }
 
@@ -57,7 +57,7 @@ export default class CustomerTabs extends Component {
   render() {
     return (
       <div>
-        <Tab panes={this.state.panes} />
+        <Tab menu={{ secondary: true, pointing: true}} panes={this.state.panes} />
       </div>
     );
   }

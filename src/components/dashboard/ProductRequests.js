@@ -1,6 +1,28 @@
 import React, { Component } from "react";
 import { Input, List, Button, Icon } from "semantic-ui-react";
-import { productRequests } from "./DB";
+
+const productRequests = [
+  {
+    name: "Lightning to HDMI",
+    quantity: 1
+  },
+  {
+    name: "USB Hubs",
+    quantity: 4
+  },
+  {
+    name: "Apple Headphone Adapters",
+    quantity: 6
+  },
+  {
+    name: "Samsung J series cases",
+    quantity: 4
+  },
+  {
+    name: "Lightning to HDMI",
+    quantity: 1
+  },
+]
 
 export default class ProductRequests extends Component {
   constructor(props) {

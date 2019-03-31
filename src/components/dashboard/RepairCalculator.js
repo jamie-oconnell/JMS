@@ -1,6 +1,81 @@
 import React, { Component } from "react";
 import { Header, Dropdown, List, Label } from "semantic-ui-react";
-import { devices } from "./DB";
+
+const devices = [
+  {
+    name: "Iphone 4",
+    category: "Iphone",
+    repairs: [
+      {
+        name: "Screen Replacement",
+        "price-primary": 120
+      },
+      {
+        name: "Battery Replacement",
+        "price-primary": 49,
+        "price-secondary": 29
+      },
+      {
+        name: "Charge Port Replacement",
+        "price-primary": 59,
+        "price-secondary": 39
+      },
+      {
+        name: "Home Button Replacement",
+        "price-primary": 59,
+        "price-secondary": 39
+      },
+      {
+        name: "Water Treatement",
+        "price-primary": 89
+      },
+      {
+        name: "Ear Speaker Replacement",
+        "price-primary": 49,
+        "price-secondary": 29
+      },
+      {
+        name: "Front Camera Replacement",
+        "price-primary": 49,
+        "price-secondary": 29
+      },
+      {
+        name: "Back Camera Replacement",
+        "price-primary": 49,
+        "price-secondary": 29
+      },
+      {
+        name: "Back Glass Replacement",
+        "price-primary": 49,
+        "price-secondary": 29
+      },
+      {
+        name: "Back Housing Replacement",
+        "price-primary": 149
+      }
+    ]
+  },
+  {
+    name: "Iphone 5",
+    category: "Iphone",
+    repairs: [
+      {
+        name: "Screen Replacement",
+        "price-primary": 150
+      },
+      {
+        name: "Battery Replacement",
+        "price-primary": 49,
+        "price-secondary": 29
+      },
+      {
+        name: "Charge Port Replacement",
+        "price-primary": 59,
+        "price-secondary": 39
+      }
+    ]
+  }
+];
 
 export default class RepairCalculator extends Component {
   constructor(props) {

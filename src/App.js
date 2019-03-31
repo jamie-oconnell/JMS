@@ -1,29 +1,28 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import Header from "./Header";
-import Dashboard from "./Dashboard";
-import Customers from "./Customers";
-import Customer from "./Customer";
-import Sidebar from "./Sidebar";
-import Jobs from "./Jobs";
-import Job from "./Job";
-import SingleCard from "./SingleCard";
+import Dashboard from "./pages/DashboardPage";
+import Customers from "./pages/CustomersPage";
+import Sidebar from "./components/global/Sidebar";
+import Jobs from "./pages/JobsPage";
+import Job from "./pages/JobPage";
+import Customer from "./pages/CustomerPage";
+import Login from './pages/Login'
 
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
         <div className="App">
-          <Header />
           <Sidebar />
           <main className="main">
             <Switch>
               <Route path="/" component={Dashboard} exact />
               <Route path="/customers" component={Customers} exact />
-              <Route path="/customers/:customer" component={SingleCard} />
+              <Route path="/customers/:customer" component={Customer} />
               <Route path="/jobs" component={Jobs} exact />
               <Route path="/jobs/:job" component={Job} />
+              <Route path="/login" component={Login} />
             </Switch>
           </main>
         </div>

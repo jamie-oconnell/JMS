@@ -1,6 +1,38 @@
 import React, { Component } from "react";
 import { Input, Card, List, Button, Icon } from "semantic-ui-react";
-import { quickProducts } from "./DB";
+
+const quickProducts = [
+  {
+    productId: 1,
+    name: "Iphone 6s LCD",
+    price: 149,
+  },
+  {
+    productId: 2,
+    name: "Iphone 7 LCD",
+    price: 199,
+  },
+  {
+    productId: 3,
+    name: "Iphone 7 LCD",
+    price: 199,
+  },
+  {
+    productId: 4,
+    name: "Iphone 7 LCD",
+    price: 199,
+  },
+  {
+    productId: 5,
+    name: "Iphone 7 LCD",
+    price: 199,
+  },
+  {
+    productId: 6,
+    name: "Iphone 7 LCD",
+    price: 199,
+  },
+];
 
 export default class Pos extends Component {
   constructor(props) {

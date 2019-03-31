@@ -1,9 +1,10 @@
 import React from "react";
 import { Card } from "semantic-ui-react";
 import RepairCalulator from "./RepairCalculator";
-import Pos from "./Pos";
+// import Pos from "../Pos";
 import QuickMenu from "./QuickMenu";
 import ProductRequests from "./ProductRequests";
+import NewCustomer from '../customers/NewCustomer'
 
 export default function Dashboard() {
   return (
@@ -15,7 +16,7 @@ export default function Dashboard() {
       </div>
       <div className="dashboard-item">
         <Card fluid>
-          <Pos />
+          {/* <Pos /> */}
         </Card>
       </div>
       <div className="dashboard-item">
@@ -26,6 +27,11 @@ export default function Dashboard() {
       <div className="dashboard-item">
         <Card fluid>
           <ProductRequests />
+        </Card>
+      </div>
+      <div className="dashboard-item">
+        <Card fluid>
+          <NewCustomer />
         </Card>
       </div>
     </div>

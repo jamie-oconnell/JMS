@@ -1,9 +1,20 @@
 import React, { Component } from "react";
 import _ from "lodash";
 import { distanceInWordsToNow, format } from "date-fns";
-import { Table, Label,} from "semantic-ui-react";
+import { Table, Label } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import { settings } from "./DB";
+import Axios from "axios";
+
+const settings = {
+  repairStatusColours: {
+    "Booked In": "pink",
+    "On Bench": "orange",
+    "Awaiting Parts": "blue",
+    "Awaiting Device": "teal",
+    "To Be Ordered": "purple",
+    "Ready To Go": "red"
+  }
+};
 
 const headers = [
   "#",
@@ -16,19 +27,29 @@ const headers = [
   "Last Updated"
 ];
 
-export default class JobsTable extends Component {
+export default class Jobs extends Component {
   state = {
     column: null,
-    direction: null
+    direction: null,
+    jobs: []
   };
 
+  componentDidMount() {
+    Axios.get("http://localhost:5000/api/jobs/current").then(res => {
+      this.setState({
+        jobs: res.data
+      });
+      console.log(res)
+    });
+  }
+
   handleSort = clickedColumn => () => {
-    const { column, data, direction } = this.state;
+    const { column, jobs, direction } = this.state;
 
     if (column !== clickedColumn) {
       this.setState({
         column: clickedColumn,
-        data: _.sortBy(data, [clickedColumn]),
+        jobs: _.sortBy(jobs, [clickedColumn]),
         direction: "ascending"
       });
 
@@ -36,7 +57,7 @@ export default class JobsTable extends Component {
     }
 
     this.setState({
-      data: this.props.data.reverse(),
+      jobs: this.props.jobs.reverse(),
       direction: direction === "ascending" ? "descending" : "ascending"
     });
   };
@@ -46,15 +67,14 @@ export default class JobsTable extends Component {
   }
 
   render() {
-    const { column, direction } = this.state;
-    const { data } = this.props;
+    const { column, direction, jobs } = this.state;
     return (
-      <Table celled sortable striped>
+      <Table style={{margin: '0'}} celled sortable>
         <Table.Header>
           <Table.Row>
             {headers.map((header, index) => {
               return (
-                <Table.HeaderCell 
+                <Table.HeaderCell
                   key={index}
                   sorted={column === header ? direction : null}
                   onClick={this.handleSort(header)}
@@ -65,32 +85,40 @@ export default class JobsTable extends Component {
             })}
           </Table.Row>
         </Table.Header>
-        {data && (
+        {jobs && (
           <Table.Body>
-            {data.map(job => {
+            {jobs.map(job => {
               return (
                 <Table.Row key={job.id}>
                   <Table.Cell collapsing>{job.id}</Table.Cell>
                   <Table.Cell>
-                    <Link to={`/customers/${job.customerId}`}>
-                      {job.customer}
+                    <Link to={`/customers/${job.customer_id}`}>
+                      {job.customer_name}
                     </Link>
                   </Table.Cell>
                   <Table.Cell>
-                    <Link to={`/jobs/${job.id}`}>{job.issue}</Link>
+                    <Link to={`/jobs/${job._id}`}>{job.issue}</Link>
                   </Table.Cell>
-                  <Table.Cell>{job.device}</Table.Cell>
+                  <Table.Cell>{job.device_name}</Table.Cell>
                   <Table.Cell>
-                    <Label className="fluid" style={{textAlign: 'center'}} as="a" color={this.repairColor(job.status)}>
+                    <Label
+                      className="fluid"
+                      style={{ textAlign: "center" }}
+                      as="a"
+                      color={this.repairColor(job.status)}
+                    >
                       {job.status}
                     </Label>
                   </Table.Cell>
-                  <Table.Cell >{`${format(job.dueDate, 'DD/MM/YYYY')}`}</Table.Cell>
-                  <Table.Cell >{`${distanceInWordsToNow(
+                  <Table.Cell>{`${format(
+                    job.dueDate,
+                    "DD/MM/YYYY"
+                  )}`}</Table.Cell>
+                  <Table.Cell>{`${distanceInWordsToNow(
                     job.created
                   )} ago`}</Table.Cell>
-                  <Table.Cell >{`${distanceInWordsToNow(
-                    job.lastUpdate
+                  <Table.Cell>{`${distanceInWordsToNow(
+                    job.last_update
                   )} ago`}</Table.Cell>
                 </Table.Row>
               );
